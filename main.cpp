@@ -1,4 +1,5 @@
 #include <iostream>
+
 void swap(int *ptr1, int *ptr2)
 {
     int x;
@@ -6,6 +7,7 @@ void swap(int *ptr1, int *ptr2)
     *ptr1=*ptr2;
     *ptr2=x;
 }
+
 template <typename T>
 void insertion_sort(T arr[], int idx_start, int idx_end, int *ptr) {
     for (int i = 1; i <= idx_end; i++) {
@@ -22,6 +24,7 @@ void insertion_sort(T arr[], int idx_start, int idx_end, int *ptr) {
 
     }
 }
+
 template <typename T>
 void localmin(T arr[], int idx_start, int idx_end, int *ptrMin)
 {
@@ -31,6 +34,47 @@ void localmin(T arr[], int idx_start, int idx_end, int *ptrMin)
             *ptrMin = *ptrMin +1;
         }
     }
+}
+
+template <typename T>
+void between_zero(T arr[], int idx_start, int idx_end, int *ptr)
+{
+    int idx_zero1 = -1;
+    int idx_zero2 = -1;
+    int sum;
+    for (int i = idx_start; i <= idx_end; i++)
+    {
+        // находим эл-ты, равные 0, и помечаем их
+        if (arr[i] == 0) {
+            if (idx_zero1 == -1)
+            {
+                idx_zero1 = i;
+            }
+            else
+            {
+                idx_zero2 = i;
+            }
+        }
+    }
+    // суммируем эл-ты между нулями
+    for (int j = idx_zero1 + 1; j < idx_zero2; j++)
+    {
+        sum = sum + arr[j];
+    }
+    *ptr = sum;
+}
+
+template <typename T>
+void change(T arr[], int idx_start, int idx_end)
+{
+    int element = arr[idx_end];
+    for (int i = idx_end-1; i >= idx_start; i--)
+    {
+        // смещаем эл-ты вправо
+        arr[i+1] = arr[i];
+    }
+    // ставим последний эл-т на первое место
+    arr[idx_start] = element;
 }
 
 
@@ -131,6 +175,47 @@ int main() {
         }
         localmin(arr, 0, n-1,ptrMin);
         std::cout << "The number of local minimums: " << locmin << "\n";
+    }
+    //8
+    {
+        int arr[3][7] = {
+                { 3, 0, 1, 6, 0, 2, 4 },
+                { 8, 3, 0, 4, 12, 2, 0 },
+                { 6, 7, 0, 5, 5, 0, 11}
+        };
+        int sum1,sum2,sum3;
+        // иницициализируем ptr адресом нужной суммы
+        int *ptr = &sum1;
+        // отправляем в функцию каждую строку
+        between_zero(arr[0], 0, 6, ptr);
+        std::cout << "The 1st sum is: " << sum1 << "\n";
+        ptr = &sum2;
+        between_zero(arr[1], 0, 6, ptr);
+        std::cout << "The 2nd sum is: " << sum2 << "\n";
+        ptr = &sum3;
+        between_zero(arr[2], 0, 6, ptr);
+        std::cout << "The 3rd sum is: " << sum3 << "\n";
+    }
+   
+    //11
+    {
+        int n =3;
+        int m =7;
+        int arr[3][7] = {
+                { 3, 0, 1, 6, 0, 2, 4 },
+                { 8, 3, 0, 4, 12, 2, 0 },
+                { 6, 7, 0, 5, 5, 0, 11}
+        };
+        // отправляем в функцию каждую строку
+        for (int i = 0; i < n; i++) {
+            change(arr[i], 0, 6);
+        }
+        // вывод результата
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++)
+                std::cout << " " << arr[i][j];
+            std::cout << "\n";
+        }
     }
 
 
