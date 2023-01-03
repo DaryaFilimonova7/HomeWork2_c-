@@ -249,13 +249,13 @@ int main() {
     //13
     {
         int m,n;
-        std::cout << "Enter the length of the 1st array: ";
+        std::cout << "Enter the length of the 1st array:  ";
         std::cin >> m;
-        std::cout << "Enter the length of the 2nd array: ";
+        std::cout << "Enter the length of the 2nd array:  ";
         std::cin >> n;
 
         int *num1 = new int[m+n];
-        std::cout << "Enter the elements: \n";
+        std::cout << "Enter the elements of the 1st array: \n";
         for (int i = 0; i<m;i++)
         {
             std::cin >> num1[i];
@@ -267,7 +267,7 @@ int main() {
         }
 
         int *num2 = new int[n];
-        std::cout << "Enter the elements: \n";
+        std::cout << "Enter the elements of the 2nd array: \n";
         for (int i = 0; i<n;i++)
         {
             std::cin >> num2[i];
