@@ -2,41 +2,41 @@
 using namespace std;
 int main()
 {
-    const int m = 3, n = 3; // обьявление размерности матрицы
-    int A[m][n]; //обьявление матрицы
-    int i, j, min_num = 0, max_num = 0, min = 0, max = 0, sum = 0; //обьявление переменных
-    cout << "Enter dimension matrix " << m << " x " << n << "\n"; //запрос на ввод матрицы
+    const int m = 3, n = 3; 
+    int A[m][n]; 
+    int i, j, min_num = 0, max_num = 0, min = 0, max = 0, sum = 0; 
+    cout << "Enter dimension matrix " << m << " x " << n << "\n"; 
     for (i = 0; i < m; i++)
     {
         for (j = 0; j < n; j++)
         {
-            cin >> A[i][j]; //чтение элемента матрицы из потока ввода
-            if (i == 0) //если строка первая
+            cin >> A[i][j]; 
+            if (i == 0) 
             {
-                sum += A[i][j]; //считаем сумму
-                min += A[i][j]; //по умолчанию считаем что сумма первой строки минимальная
-                max += A[i][j]; // она же максимальная
+                sum += A[i][j]; 
+                min += A[i][j];
+                max += A[i][j]; 
             }
-            else sum += A[i][j]; //для всех остальных строк просто считаем сумму
+            else sum += A[i][j]; 
         }
-        if (sum > max) //если сумма строки больше максимальной
+        if (sum > max) 
         {
-            max = sum;  //максимальному значению присваиваем сумму этой строчки.
-            max_num = i; //номер текущей строки присваиваем номеру максимальной строки по умолчанию
+            max = sum;  
+            max_num = i; 
         }
         if (sum < min)
         {
-            min = sum; //минимальному значению присваиваем сумму этой строчки.
-            min_num = i; //номер текущей строки присваиваем номеру минимальной строки по умолчанию
+            min = sum; 
+            min_num = i; 
         }
-        sum = 0; //перед переходом на новую строку обнуляем сумму
+        sum = 0; 
     }
     i = min_num;
     cout << "\nstring with minimum sum of elements - ";
-    for (j = 0; j < n; j++) cout << A[i][j] << " "; //вывод минимальной строки
-    cout << ", the sum of its elements = " << min; //и ее суммы
+    for (j = 0; j < n; j++) cout << A[i][j] << " "; 
+    cout << ", the sum of its elements = " << min;
     i = max_num;
-    cout << "\nstring with maximum sum of elements - "; //аналогично для максимальной строки
+    cout << "\nstring with maximum sum of elements - "; 
     for (j = 0; j < n; j++) cout << A[i][j] << " ";
     cout << ", the sum of its elements = " << max;
     return 0;
