@@ -80,5 +80,9 @@ int main()
     }
     std::cout << "\n";
 
+    delete[] arr;
+    delete[] arr_s;
+    delete[] arr_uns;
+
     return 0;
 }
